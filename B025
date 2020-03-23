@@ -1,0 +1,41 @@
+# coding: utf-8
+# Your code here!
+inputs = list(map(int, input().split()))
+
+bush_list = []
+
+bushes = inputs[0]
+rabbits = inputs[1]
+jump = inputs[2]
+
+bush_list = list(0 for i in range(bushes))
+
+for j in range(rabbits):
+    rab_pos = int(input())
+    bush_list[rab_pos - 1] = j + 1
+
+for k in range(jump):
+    for r in range(rabbits):
+        now_rab_pos = bush_list.index(r + 1)
+        # print(now_rab_pos)
+        blank_bush = bush_list.index(0)
+        if now_rab_pos < blank_bush:
+            # print('!')
+            bush_list[blank_bush] = r + 1
+            bush_list[now_rab_pos] = 0
+        else:
+            blank_list = [i for i, x in enumerate(bush_list) if x == 0]
+            # print(blank_list)
+            next_bush = [i for i in blank_list if i > now_rab_pos]
+            if next_bush == []:
+                blank_bush = blank_list[0]
+                bush_list[blank_bush] = r + 1
+                bush_list[now_rab_pos] = 0
+            else:
+                bush_list[next_bush[0]] = r + 1
+                bush_list[now_rab_pos] = 0
+        # print(bush_list)
+        
+        
+for x in range(rabbits):
+    print(bush_list.index(x + 1) + 1)
