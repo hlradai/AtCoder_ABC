@@ -1,0 +1,30 @@
+import numpy as np
+
+def subAndMax(n):
+    return max(0, n-1)
+
+inputs = list(map(int, input().split()))
+
+politicians = inputs[0]
+people = inputs[1]
+speech_times = inputs[2]
+
+politician_list = list(0 for i in range(politicians))
+politician_list.append(people)
+print(politician_list)
+after_speech = politician_list
+
+for j in range(speech_times):
+    speech_politician = int(input())
+    before_speech = np.array(after_speech)
+    after_speech = np.array(list(map(subAndMax, before_speech)))
+    counts = list(before_speech != after_speech).count(True)
+    after_speech[speech_politician - 1] = after_speech[speech_politician - 1] + counts
+    
+last_list =  list(after_speech)
+last_list.pop(-1)
+max_list = [i for i, x in enumerate(last_list) if x == max(last_list)]
+
+for k in max_list:
+    print(k+1)
+    
