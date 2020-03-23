@@ -1,0 +1,20 @@
+input_stats = input().split()
+
+A = input_stats[0]
+B = input_stats[1]
+
+length = max(len(A), len(B))
+
+strA = str(A).zfill(length)
+strB = str(B).zfill(length)
+result = ''
+
+print(length, strA, strB)
+
+for i in range(length):
+    current = int(strA[i]) + int(strB[i])
+    print(current)
+    
+    result = result + str(current)[-1]
+
+print(result)
