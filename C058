@@ -1,0 +1,13 @@
+def leftShiftIndex(arr, n):
+   result = arr[n:] + arr[:n]
+   return result
+
+N, goal, start = input().split()
+arr = start
+
+for i in range(int(N)):
+     if arr == goal:
+        print(i)
+        break
+    
+    arr = leftShiftIndex(arr, 1)
