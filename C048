@@ -1,0 +1,13 @@
+X, P = list(map(int, input().split()))
+P = 1 - (P/100)
+SUM = 0
+
+for i in range(10000):
+    SUM = SUM + X 
+    
+    X = int(X * P)
+    print(X)
+    
+    if X <= 0:
+        print(SUM)
+        break
