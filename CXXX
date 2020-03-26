@@ -1,0 +1,15 @@
+import numpy as np
+
+money, M = list(map(int, input().split()))
+points = 0
+
+for i in range(M):
+    cost = int(input())
+    if cost > points:
+        points = cost * 0.1 + points)
+        money = money - cost
+    
+    else:
+        points = points - cost
+    
+    print(money, points)
