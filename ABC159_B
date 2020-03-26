@@ -1,0 +1,23 @@
+S = list(input())
+# print(S)
+FS = S[:int((len(S) - 1)/ 2)]
+BS = S[int((len(S) + 3) / 2) -1:]
+
+r_S = list(reversed(S))
+r_FS = list(reversed(FS))
+r_BS = list(reversed(BS))
+flag = 0
+
+for i in range(len(S)):
+    # print(r_FS, BS)
+    if r_S[i] == S[i] and r_FS == FS and r_BS == BS:
+        flag = 1
+
+        continue
+    else:
+        print('No')
+        flag = 0
+        break
+    
+if flag == 1:
+    print('Yes')
