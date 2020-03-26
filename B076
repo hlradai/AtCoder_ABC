@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+
+def bake(breds, breds_number):
+    breds.loc['stock', :] = breds.loc['stock', :] + breds_number
+    return breds
+    
+def buy(breds, breds_number):
+    stock_check = sum(breds.loc['stock', :] >= breds_number)
+    if stock_check == len(breds_number):
+        breds.loc['stock', :] = breds.loc['stock', :] - breds_number
+        total = breds.loc['price', :] * breds_number
+        print(sum(total))
+    else:
+        print("-1")
+    return breds
+    
+    
+N, query = list(map(int, input().split()))
+
+breds = pd.DataFrame(index=['price', 'stock'], columns=range(N))
+
+for n in range(N):
+    breds.loc['price', n], breds.loc['stock', n] = list(map(int, input().split()))
+    
+for i in range(query):
+    inputs = list(input().split())
+    order = inputs[0]
+    breds_number = list(map(int, inputs[1:]))
+    
+    breds = bake(breds, breds_number) if order == 'bake' else buy(breds, breds_number)
